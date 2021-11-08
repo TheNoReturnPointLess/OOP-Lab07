@@ -77,14 +77,13 @@ public final class TestAnonymousComparator {
          * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 41
          */
         // TODO
-        
-        Comparator<User> comparator = new Comparator<User>() {
+        final Comparator<User> byAge = new Comparator<User>() {
 			@Override
 			public int compare(User o1, User o2) {
-				return o1.getAge() - o2.getAge();
+				return Integer.compare(o1.getAge(), o2.getAge());
 			}
 		};
-		Collections.sort(denzelUsers, comparator);
+		Collections.sort(denzelUsers, byAge);
         
 		/*
          * expected Result
@@ -117,14 +116,7 @@ public final class TestAnonymousComparator {
          * class Collections
          */
         // TODO
-        
-        Comparator<User> comparator2 = new Comparator<User>() {
-			@Override
-			public int compare(User o1, User o2) {
-				return o2.getAge() - o1.getAge();
-			}
-		};
-		Collections.sort(rossiUsers, comparator2);
+		Collections.sort(rossiUsers, byAge.reversed());
         
         /*
          * expected Result
