@@ -52,20 +52,6 @@ public enum Sport {
      * 
      * Declare required fields
      */
-	private enum Place {
-		INDOOR("indoor"),
-		OUTDOOR("outdoor");
-		
-		private final String name;
-		
-		Place(final String name){
-			this.name = name;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-	}
 	
 	private final Place place; 
 	private final int noTeamMembers;
