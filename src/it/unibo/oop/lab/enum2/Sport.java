@@ -37,6 +37,13 @@ public enum Sport {
      * - soccer
      * 
      */
+	BASKET(Place.INDOOR, 5, "basketball"),
+	VOLLEY(Place.INDOOR, 6, "volleyball"),
+	TENNIS(Place.INDOOR, 1, "tennis"),
+	BIKE(Place.OUTDOOR, 1, "bike"),
+	F1(Place.OUTDOOR, 1, "f1"),
+	MOTOGP(Place.OUTDOOR, 1, "motogp"),
+	SOCCER(Place.OUTDOOR, 11, "soccer");
 
     /*
      * TODO
@@ -45,16 +52,39 @@ public enum Sport {
      * 
      * Declare required fields
      */
+	private enum Place {
+		INDOOR("indoor"),
+		OUTDOOR("outdoor");
+		
+		private final String name;
+		
+		Place(final String name){
+			this.name = name;
+		}
+		
+		public String toString() {
+			return this.name;
+		}
+	}
+	
+	private final Place place; 
+	private final int noTeamMembers;
+	private final String actualName;
 
     /*
      * TODO
-     * 
+     * volley, tennis, bike, F1, motogp, soccer
      * [CONSTRUCTOR]
      * 
      * Define a constructor like this:
      * 
      * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
+	Sport(final Place place, final int noTeamMembers, final String actualName){
+		this.place = place;
+		this.noTeamMembers = noTeamMembers;
+		this.actualName = actualName; 
+	}
 
     /*
      * TODO
@@ -81,4 +111,28 @@ public enum Sport {
      * 
      * Returns the string representation of a sport
      */
+	public boolean isIndividualSport() {
+		return this.noTeamMembers == 1;
+	}
+    
+    public boolean isIndoorSport() {
+    	return this.getPlace() == Place.INDOOR;
+    }
+  
+    public Place getPlace() {
+    	return this.place;
+    }
+    
+    public String toString() {
+    	String print = this.actualName + " is a sport done "
+    					+ this.place + ", ";
+    	if (this.noTeamMembers > 1) {
+    		print += "with a team of " + this.noTeamMembers
+    				+ " people";
+    	} else {
+    		print += "individually";
+    	}
+    	return print + ".";
+    }
 }
+
